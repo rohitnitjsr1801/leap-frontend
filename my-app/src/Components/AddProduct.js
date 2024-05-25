@@ -1,21 +1,46 @@
 import React, { useState } from 'react';
-
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 const AddProductOrService = () => {
     const [type, setType] = useState('Product');
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [imageUrl, setImageUrl] = useState('');
-
-    const addProductOrService = () => {
+    
+    const managerId= useSelector(state => state.updateUserId);
+    
+    const token=useSelector(state=>state.updateUserToken);
+    
+    const addProductOrService = async () => {
         if (name && description && price && imageUrl) {
-            console.log('Added:', { type, name, description, price, imageUrl });
-            alert(`${type} added successfully!`);
-            // Clear the fields after adding
-            setName('');
-            setDescription('');
-            setPrice('');
-            setImageUrl('');
+            const data = {
+                category: type.toUpperCase(), // Convert "Product" to "PRODUCT" and "Service" to "SERVICE"
+                name,
+                description,
+                price,
+                imageUrl
+            };
+            try {
+                const response = await axios.post(`http://localhost:8080/api/addProduct?managerId=${managerId}`, 
+                data,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}` // Set the token in the headers
+                    }
+                }); // Replace with your API endpoint
+                console.log('Response:', response.data);
+                alert(`${type} added successfully!`);
+                // Clear the fields after adding
+                setName('');
+                setDescription('');
+                setPrice('');
+                setImageUrl('');
+            } catch (error) {
+                console.error('Error adding product/service:', error);
+                alert('Failed to add the product/service.');
+            }
+            
         } else {
             alert('Please fill in all fields.');
         }

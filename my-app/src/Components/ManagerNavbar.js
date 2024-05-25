@@ -1,9 +1,10 @@
 import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
-
+import { useSelector } from 'react-redux';
 function Navbar2() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
  
+  let userName=useSelector(state=>state.updateUserName);
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -38,7 +39,7 @@ function Navbar2() {
 
           <div className="dropdown">
           <button type="button" className="btn btn-light" onClick={toggleDropdown} style={{ width:"10rem",height:"2.4rem",marginRight: "0px" }}>
-          {/* username */}
+            {userName}
           </button>
           {dropdownOpen && (
             <div className="dropdown-content">

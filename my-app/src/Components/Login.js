@@ -5,7 +5,7 @@ import Register from './Register';
 import axios from 'axios';
 import { Link,useNavigate } from 'react-router-dom';
 import {useSelector,useDispatch} from 'react-redux';
-import { changeUserId, changeUserToken } from '../Actions';
+import { changeUserId, changeUserRole, changeUserToken,changeUserName } from '../Actions';
 
 const Login = ({ onLogin }) => {
   const [username, setUserName] = useState('');
@@ -16,6 +16,8 @@ const Login = ({ onLogin }) => {
 
   let userId= useSelector(state => state.updateUserId);
   let userToken=useSelector(state=>state.updateUserToken);
+  let userRole=useSelector(state=>state.updateUserRole);
+  
   useEffect(() => {
     if (userId !== 0) {
       // Perform redirect based on the role
@@ -53,10 +55,12 @@ const Login = ({ onLogin }) => {
       
       dispatch(changeUserToken({type:'UPDATE_USER_TOKEN',payload:response.data.token}));
       dispatch(changeUserId({type:'UPDATE_USER_ID',payload:response.data.id}));
+      dispatch(changeUserRole({type:'UPDATE_USER_ROLE',payload:response.data.roles[0]}));
+      dispatch(changeUserName({type:'UPDATE_USER_NAME',payload:response.data.username}));
       
       console.log(userId);
       console.log(userToken);
-      // console.log()
+      // console.log(user);
     } catch (error) {
       // Handle any errors that occur during the signin process
       console.error('Error signing in:', error.message);

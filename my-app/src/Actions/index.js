@@ -10,6 +10,18 @@ export const changeUserToken=(token)=>{
         payload:token.payload,
     }
 }
+export const changeUserRole=(role)=>{
+    return {
+        type:role.type,
+        payload:role.payload,
+    }
+}
+export const changeUserName=(name)=>{
+    return {
+        type:name.type,
+        payload:name.payload,
+    }
+}
 // export const changeModetoDark=()=>{ 
 //     return {
 //      type:'light',
