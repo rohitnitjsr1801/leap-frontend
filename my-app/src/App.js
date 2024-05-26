@@ -12,6 +12,7 @@ import AddProduct from './Components/AddProduct';
 import { useSelector } from 'react-redux';
 import Navbar from './Components/HomeNavbar';
 import WithoutSignInHome from './Components/WithoutSignInHome';
+import PromotionTable from './Components/PendingPromotions';
 const App = () => {
   
   let userRole=useSelector(state=>state.updateUserRole);
@@ -25,6 +26,8 @@ const App = () => {
         <Route path="/" element={<WithoutSignInHome/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
+        <Route path="/pendingPromotions" element={<PromotionTable/>}/>
+        
         <Route path="/customerHome" element={<CustomerHomePage/>}/>
         <Route path="/managerHome" element={<ManagerHomePage/>}/>
         <Route path="/ownerHome" element={<OwnerHomePage/>}/>

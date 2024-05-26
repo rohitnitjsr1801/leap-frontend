@@ -31,7 +31,7 @@ function Navbar2() {
           <Link to="/" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Apply Promotions</button></Link>      
           <span className="spacer"></span>
       
-          <Link to="/" style={{ color: "white" ,fontSize: "20px" }}><button class="btn btn-light">Pending Promotions</button></Link>
+          <Link to="/pendingPromotions" style={{ color: "white" ,fontSize: "20px" }}><button class="btn btn-light">Pending Promotions</button></Link>
           <span className="spacer"></span>
       
           <Link to="/" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Analytics</button></Link>
