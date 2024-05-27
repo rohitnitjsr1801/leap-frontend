@@ -15,6 +15,7 @@ import WithoutSignInHome from './Components/WithoutSignInHome';
 import PromotionTable from './Components/PendingPromotions';
 import ProductDetail from './Components/ProductDetail';
 import CustomerPurchaseHistory from './Components/CustomerPurchaseHistory';
+import AddPromotion from './Components/AddPromotion';
 const App = () => {
   
   let userRole=useSelector(state=>state.updateUserRole);
@@ -34,6 +35,7 @@ const App = () => {
         <Route path="/managerHome" element={<ManagerHomePage/>}/>
         <Route path="/ownerHome" element={<OwnerHomePage/>}/>
         <Route path="/add" element={<AddProduct/>}/>
+        <Route path="/addPromotion" element={<AddPromotion />} />
         <Route path="/product" element={<ProductDetail/>}/>
       </Routes>
       </React.Fragment>
