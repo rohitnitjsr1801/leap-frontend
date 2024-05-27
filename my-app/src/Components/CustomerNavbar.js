@@ -36,7 +36,7 @@ function Navbar1() {
           <Link to="/" style={{ color: "white" ,fontSize: "20px" }}><button class="btn btn-light">Wishlist</button></Link>
           <span className="spacer"></span>
       
-          <Link to="/" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">MyOrders</button></Link>
+          <Link to="/purchaseHistory" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">MyOrders</button></Link>
          </div> 
           <div className="dropdown">
           <button type="button" className="btn btn-light" onClick={toggleDropdown} style={{ width:"10rem",height:"2.4rem",marginRight: "0px" }}>
