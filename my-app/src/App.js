@@ -15,6 +15,7 @@ import WithoutSignInHome from './Components/WithoutSignInHome';
 import PromotionTable from './Components/PendingPromotions';
 import ProductDetail from './Components/ProductDetail';
 import CustomerPurchaseHistory from './Components/CustomerPurchaseHistory';
+import CustomerProductDetail from './Components/CustomerProductDetail';
 const App = () => {
   
   let userRole=useSelector(state=>state.updateUserRole);
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/" element={<WithoutSignInHome/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
+        <Route path="/viewProduct/:productId" element={<CustomerProductDetail/>}/>
         <Route path="/pendingPromotions" element={<PromotionTable/>}/>
         <Route path="/purchaseHistory" element={<CustomerPurchaseHistory/>}/>
         <Route path="/customerHome" element={<CustomerHomePage/>}/>
