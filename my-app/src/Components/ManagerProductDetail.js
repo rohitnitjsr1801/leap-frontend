@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Card, CardContent, CardMedia, Typography, Button, Grid, CircularProgress } from '@mui/material';
+import { Box, Card, CardContent, CardMedia, Typography, Button, CircularProgress } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
@@ -34,17 +34,24 @@ const ManagerProductDetail = () => {
     fetchPromotion();
   }, [product.id]);
 
-  const handleEditPromotion = () => {
-    // navigate(`/edit-promotion/${promotion.id}`);
+  const handleEditPromotion = (promotionId) => {
+    navigate(`/promotion/edit/${promotionId}`);
   };
 
-  const handleDeletePromotion = async () => {
-    // try {
-    //   await axios.delete(`/api/promotions/${promotion.id}`);
-    //   setPromotion(null);
-    // } catch (error) {
-    //   console.error('Error deleting promotion:', error);
-    // }
+  const handleDeletePromotion = async (promotionId) => {
+    try {
+      await axios.delete("http://localhost:8080/api/promotion", {
+        headers: {
+          Authorization: `Bearer ${userToken}`
+        },
+        params: {
+          promotion_id: promotionId
+        }
+      });
+      setPromotion(null);
+    } catch (error) {
+      console.error('Error deleting promotion:', error);
+    }
   };
 
   const handleAddPromotion = () => {
@@ -83,7 +90,7 @@ const ManagerProductDetail = () => {
               Category: {product.category}
             </Typography>
             <Typography variant="body1">
-              Price: ${product.price}
+              Price: ₹{product.price}
             </Typography>
             <Typography variant="body1">
               Product ID: {product.id}
@@ -95,9 +102,9 @@ const ManagerProductDetail = () => {
       <Typography variant="h4" component="h2" sx={{ mb: 2 }}>
         Promotion
       </Typography>
-      <Box sx={{ maxWidth: 600, width: '100%', display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ maxWidth: '100%', display: 'flex', justifyContent: 'center' }}>
         {promotion ? (
-          <Card sx={{ width: '100%' }}>
+          <Card sx={{ width: '100%', maxWidth: 500 }}>
             <CardContent>
               <Typography variant="body1">
                 Promotion ID: {promotion.id}
@@ -115,10 +122,10 @@ const ManagerProductDetail = () => {
                 End Date: {promotion.endDate}
               </Typography>              
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-                <Button variant="contained" color="primary" onClick={handleEditPromotion}>
+                <Button variant="contained" color="primary" onClick={() => handleEditPromotion(promotion.id)}>
                   Edit
                 </Button>
-                <Button variant="contained" color="secondary" onClick={handleDeletePromotion}>
+                <Button variant="contained" color="secondary" onClick={() => handleDeletePromotion(promotion.id)}>
                   Delete
                 </Button>
               </Box>
