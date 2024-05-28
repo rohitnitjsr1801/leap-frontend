@@ -6,10 +6,10 @@
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-Things pending (28th may):
-ongoing promotions ko edit krne ka component 
+Things pending (28th may): 
 without signin home page
 analytics
-if customer is eligible then only show discounted price
+wishlist
+products purchase history +promotion purchase in same file
 protected routes
 logout  

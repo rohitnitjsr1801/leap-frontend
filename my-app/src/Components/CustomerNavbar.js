@@ -1,17 +1,20 @@
 import { useState } from 'react';
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux';
+import { useSelector ,useDispatch} from 'react-redux';
+import { changeUserId, changeUserRole, changeUserToken,changeUserName } from '../Actions';
 function Navbar1() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
- 
+ const dispatch=useDispatch();
   let userName=useSelector(state=>state.updateUserName);
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
   const handleLogout = () => {
-    // Perform logout logic here, such as clearing authentication tokens
-    
+      dispatch(changeUserToken({type:'UPDATE_USER_TOKEN',payload:"token"}));
+      dispatch(changeUserId({type:'UPDATE_USER_ID',payload:0}));
+      dispatch(changeUserRole({type:'UPDATE_USER_ROLE',payload:"CUSTOMER"}));
+      dispatch(changeUserName({type:'UPDATE_USER_NAME',payload:"USER"}));
     window.location.href = '/login';
   };
 
