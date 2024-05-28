@@ -48,7 +48,7 @@ const ManagerProductDetail = () => {
   };
 
   const handleAddPromotion = () => {
-    // navigate('/promotion/new');
+    navigate('/addPromotion');
   };
 
   if (loading) {

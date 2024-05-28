@@ -40,7 +40,6 @@ const App = () => {
         <Route path="/add" element={<AddProduct/>}/>
         <Route path="/manager/product" element={<ManagerProductDetail/>}/>
         <Route path="/addPromotion" element={<AddPromotion />} />
-        <Route path="/product" element={<ProductDetail/>}/>
       </Routes>
       </React.Fragment>
     </>
