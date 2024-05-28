@@ -27,7 +27,7 @@ const Login = ({ onLogin }) => {
       if (user.roles[0] === "ROLE_MANAGER") {
         navigate('/managerHome');
       } else if (user.roles[0] === "ROLE_OWNER") {
-        navigate('/ownerHome');
+        navigate('/managerHome');
       } else {
         navigate('/customerHome');
       }
