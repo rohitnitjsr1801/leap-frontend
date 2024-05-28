@@ -31,9 +31,9 @@ const CustomerProductDetail = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [promotionId, setPromotionId] = useState(null);
+  const [discountRate, setDiscountRate] = useState(null);
   const token = useSelector(state => state.updateUserToken);
-  const customerId =useSelector(state => state.updateUserId);
-  ; // Assuming a fixed customer ID for demonstration
+  const customerId = useSelector(state => state.updateUserId);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -62,16 +62,38 @@ const CustomerProductDetail = () => {
             },
           }
         );
-        setPromotionId(response.data);
+        const promotionId = response.data;
+        
+        // Check if the promotion is applicable for the customer
+        const checkPromotionResponse = await axios.get(
+          `http://localhost:8080/api/promotion/checkIfPromotionApplicableForCustomer?promotion_id=${promotionId}&customer_id=${customerId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        // If the discount rate is present, set the promotionId and discountRate
+        if (checkPromotionResponse.data) {
+          setPromotionId(promotionId);
+          setDiscountRate(checkPromotionResponse.data);
+        } else {
+          setPromotionId(null);
+          setDiscountRate(null);
+        }
+        console.log(promotionId);
+        console.log(checkPromotionResponse.data);
       } catch (error) {
-        console.error('Error fetching promotion ID:', error);
+        console.error('Error fetching promotion ID or checking promotion applicability:', error);
         setPromotionId(null);
+        setDiscountRate(null);
       }
     };
 
     fetchProduct();
     fetchPromotionId();
-  }, [productId, token]);
+  }, [productId, token, customerId]);
 
   const handleInterestedClick = async () => {
     try {
@@ -102,15 +124,6 @@ const CustomerProductDetail = () => {
             },
           }
         );
-        const response1 = await axios.put(
-          `http://localhost:8080/api/promotion/interested?promotion_id=${promotionId}&customer_id=${customerId}`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
         console.log('Promotion bought:', response.data);
       } else {
         const response = await axios.post(
@@ -128,6 +141,16 @@ const CustomerProductDetail = () => {
       console.error('Error buying product or promotion:', error);
     }
   };
+
+  const getDiscountedPrice = () => {
+    console.log(product+" "+discountRate)
+    if (product && discountRate) {
+      console.log(product);
+      return (product.price - (product.price * discountRate / 100)).toFixed(2);
+    }
+    return product ? product.price : '';
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <ProductDetailContainer>
@@ -145,6 +168,13 @@ const CustomerProductDetail = () => {
                 <Typography variant="body1" gutterBottom>
                   Description: {product.description}
                 </Typography>
+                {
+                  discountRate&&
+                   <Typography variant="body1" gutterBottom>
+                     Discounted Price: {getDiscountedPrice()}<br></br>
+                     Discount: {discountRate}%
+                   </Typography>  
+                }
                 <Typography variant="body1" gutterBottom>
                   Price: {product.price}
                 </Typography>

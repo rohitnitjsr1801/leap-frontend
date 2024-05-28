@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { Box, CircularProgress } from '@mui/material';
 
-const AddPromotion = () => {
+const EditPromotion = () => {
+  const { promotionId } = useParams();
+  const [loading, setLoading] = useState(true);
   const [gender, setGender] = useState('');
   const [ageRange, setAgeRange] = useState('');
   const [products, setProducts] = useState('');
@@ -14,6 +18,33 @@ const AddPromotion = () => {
 
   const managerId = useSelector(state => state.updateUserId);
   const token = useSelector(state => state.updateUserToken);
+
+  useEffect(() => {
+    const fetchPromotion = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8080/api/promotion/${promotionId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+            });
+            const promotion = response.data;
+            setAgeRange(promotion.ageRange);
+            setDiscountRate(promotion.discountRate);
+            setStartDate(promotion.startDate);
+            setEndDate(promotion.endDate);
+            setGender(promotion.gender);
+            setProducts(promotion.products.map(product => product.id));
+            setPromotionType(promotion.promotionType);
+            setPurchaseFrequency(promotion.purchaseFrequency);
+        } catch (error) {
+          console.error('Error fetching promotion:', error);
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+      fetchPromotion();
+  }, [promotionId])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +62,7 @@ const AddPromotion = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:8080/api/promotion', promotionData, {
+      const response = await axios.put(`http://localhost:8080/api/promotion/${promotionId}`, promotionData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -103,9 +134,17 @@ const AddPromotion = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+
   return (
     <div style={styles.container}>
-      <h2 style={styles.header}>Create Promotion</h2>
+      <h2 style={styles.header}>Update Promotion</h2>
       <form onSubmit={handleSubmit}>
         <div style={styles.formGroup}>
           <label style={styles.label}>Gender:</label>
@@ -201,10 +240,10 @@ const AddPromotion = () => {
             required
           />
         </div>
-        <button type="submit" style={styles.button}>Create Promotion</button>
+        <button type="submit" style={styles.button}>Update Promotion</button>
       </form>
     </div>
   );
 };
 
-export default AddPromotion;
+export default EditPromotion;

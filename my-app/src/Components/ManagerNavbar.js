@@ -10,7 +10,7 @@ function Navbar2() {
   };
   const handleLogout = () => {
     // Perform logout logic here, such as clearing authentication tokens
-
+    
     window.location.href = '/login';
   };
 
@@ -25,6 +25,9 @@ function Navbar2() {
 
 
           <span className="spacer"></span>
+          <Link to="/managerHome" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Home</button></Link>
+          <span className="spacer"></span>
+
           <Link to="/add" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Add Products/Services</button></Link>
           <span className="spacer"></span>
 
