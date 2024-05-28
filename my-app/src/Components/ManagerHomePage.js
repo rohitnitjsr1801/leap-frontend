@@ -42,8 +42,8 @@ function ManagerHomePage() {
     fetchProducts();
   }, [userId, userToken]);
 
-  const handleClick = (productId) => {
-    navigate('/product');
+  const handleClick = (product) => {
+    navigate('/manager/product', { state: product });
   };
 
   if (loading) {
@@ -64,7 +64,7 @@ function ManagerHomePage() {
       <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
         {products.map(product => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
-            <CardActionArea onClick={() => handleClick(product.id)}>
+            <CardActionArea onClick={() => handleClick(product)}>
               <Card sx={{ height: '100%' }}>
                 <CardMedia
                   component="img"
@@ -95,7 +95,7 @@ function ManagerHomePage() {
       <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
         {services.map(service => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={service.id}>
-            <CardActionArea onClick={() => handleClick(service.id)}>
+            <CardActionArea onClick={() => handleClick(service)}>
               <Card sx={{ height: '100%' }}>
                 <CardMedia
                   component="img"

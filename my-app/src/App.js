@@ -13,11 +13,9 @@ import { useSelector } from 'react-redux';
 import Navbar from './Components/HomeNavbar';
 import WithoutSignInHome from './Components/WithoutSignInHome';
 import PromotionTable from './Components/PendingPromotions';
-import ProductDetail from './Components/ProductDetail';
 import CustomerPurchaseHistory from './Components/CustomerPurchaseHistory';
-
+import ManagerProductDetail from './Components/ManagerProductDetail';
 import AddPromotion from './Components/AddPromotion';
-
 import CustomerProductDetail from './Components/CustomerProductDetail';
 
 const App = () => {
@@ -40,6 +38,7 @@ const App = () => {
         <Route path="/managerHome" element={<ManagerHomePage/>}/>
         <Route path="/ownerHome" element={<OwnerHomePage/>}/>
         <Route path="/add" element={<AddProduct/>}/>
+        <Route path="/manager/product" element={<ManagerProductDetail/>}/>
         <Route path="/addPromotion" element={<AddPromotion />} />
         <Route path="/product" element={<ProductDetail/>}/>
       </Routes>
