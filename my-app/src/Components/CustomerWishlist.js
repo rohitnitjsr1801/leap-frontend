@@ -9,35 +9,26 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const CustomerPurchaseHistory = () => {
-    const [products, setProducts] = useState([]);
+const CustomerWishlist = () => {
+    const [wishlist, setWishlist] = useState([]);
     const token = useSelector(state => state.updateUserToken);
     const customerId = useSelector(state => state.updateUserId);
-
+    console.log("JWT Token:", token);
     useEffect(() => {
-        const fetchProducts = async () => {
+        const fetchWishlist = async () => {
             try {
-                const [productsResponse, promotionsResponse] = await Promise.all([
-                    axios.get('http://localhost:8080/api/myPurchasedProducts', {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    }),
-                    axios.get(`http://localhost:8080/api/promotion/bought/${customerId}`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    })
-                ]);
-
-                const combinedProducts = [...productsResponse.data, ...promotionsResponse.data];
-                setProducts(combinedProducts);
+                const response = await axios.get(`http://localhost:8080/api/promotion/interested/${customerId}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                setWishlist(response.data);
             } catch (error) {
-                console.error('Error fetching products:', error);
+                console.error('Error fetching wishlist:', error);
             }
         };
 
-        fetchProducts();
+        fetchWishlist();
     }, [token, customerId]);
 
     return (
@@ -52,7 +43,7 @@ const CustomerPurchaseHistory = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {products.map((product) => (
+                    {wishlist.map((product) => (
                         <TableRow key={product.id}>
                             <TableCell component="th" scope="row">
                                 {product.name}
@@ -68,4 +59,4 @@ const CustomerPurchaseHistory = () => {
     );
 };
 
-export default CustomerPurchaseHistory;
+export default CustomerWishlist;

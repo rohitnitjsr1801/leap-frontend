@@ -17,6 +17,8 @@ import ManagerProductDetail from './Components/ManagerProductDetail';
 import AddPromotion from './Components/AddPromotion';
 import CustomerProductDetail from './Components/CustomerProductDetail';
 import EditPromotion from './Components/EditPromotion';
+import CustomerWishlist from './Components/CustomerWishlist';
+
 
 const App = () => {
   
@@ -40,6 +42,7 @@ const App = () => {
         <Route path="/add" element={<AddProduct/>}/>
         <Route path="/manager/product" element={<ManagerProductDetail/>}/>
         <Route path="/addPromotion" element={<AddPromotion />} />
+         <Route path="/wishlist" element={<CustomerWishlist />} />
         <Route path="/promotion/edit/:promotionId" element={<EditPromotion />} />
       </Routes>
       </React.Fragment>

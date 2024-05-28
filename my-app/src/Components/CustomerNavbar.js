@@ -33,7 +33,7 @@ function Navbar1() {
           <span className="spacer"></span>
       
       
-          <Link to="/" style={{ color: "white" ,fontSize: "20px" }}><button class="btn btn-light">Wishlist</button></Link>
+          <Link to="/wishlist" style={{ color: "white" ,fontSize: "20px" }}><button class="btn btn-light">Wishlist</button></Link>
           <span className="spacer"></span>
       
           <Link to="/purchaseHistory" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">MyOrders</button></Link>
