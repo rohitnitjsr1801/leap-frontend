@@ -21,29 +21,40 @@ const AddPromotion = () => {
     const promotionData = {
       gender,
       ageRange,
-      products: products.split(',').map(id => ({ id: id.trim() })),
+      productIds: products.split(',').map(id => parseInt(id.trim(), 10)),
       purchaseFrequency,
       promotionType,
+      managerId,
       discountRate,
       startDate,
       endDate
     };
 
     try {
-        const response = await axios.post('http://localhost:8080/api/promotion', promotionData, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        alert('Promotion created successfully');
-      } catch (error) {
-        if (error.response && error.response.status === 401) {
-          alert('Unauthorized: Please check your login credentials and try again.');
-        } else {
-          console.error('Error creating promotion:', error);
-          alert('Failed to create promotion. Please try again later.');
+      const response = await axios.post('http://localhost:8080/api/promotion', promotionData, {
+        headers: {
+          Authorization: `Bearer ${token}`
         }
+      });
+      alert('Promotion created successfully');
+      setAgeRange('');
+      setDiscountRate('');
+      setEndDate('');
+      setGender('');
+      setProducts('');
+      setPromotionType('');
+      setPurchaseFrequency('');
+      setStartDate('');
+
+    } catch (error) {
+      console.log(promotionData);
+      if (error.response && error.response.status === 401) {
+        alert('Unauthorized: Please check your login credentials and try again.');
+      } else {
+        console.error('Error creating promotion:', error);
+        alert('Failed to create promotion. Please try again later.');
       }
+    }
   };
 
   const styles = {
