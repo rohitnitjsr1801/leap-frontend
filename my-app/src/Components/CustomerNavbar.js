@@ -26,7 +26,7 @@ function Navbar1() {
       
       
           <span className="spacer"></span>
-          <Link to="/" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Products</button></Link>
+          <Link to="/customerHome" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Products</button></Link>
           <span className="spacer"></span>
       
           <Link to="/" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Services</button></Link>      
@@ -37,7 +37,7 @@ function Navbar1() {
           <span className="spacer"></span>
       
           <Link to="/purchaseHistory" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">MyOrders</button></Link>
-         </div> 
+        </div> 
           <div className="dropdown">
           <button type="button" className="btn btn-light" onClick={toggleDropdown} style={{ width:"10rem",height:"2.4rem",marginRight: "0px" }}>
             {userName}
