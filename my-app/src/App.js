@@ -13,8 +13,8 @@ import { useSelector } from 'react-redux';
 import Navbar from './Components/HomeNavbar';
 import WithoutSignInHome from './Components/WithoutSignInHome';
 import PromotionTable from './Components/PendingPromotions';
-import ProductDetail from './Components/ProductDetail';
 import CustomerPurchaseHistory from './Components/CustomerPurchaseHistory';
+import ManagerProductDetail from './Components/ManagerProductDetail';
 const App = () => {
   
   let userRole=useSelector(state=>state.updateUserRole);
@@ -34,7 +34,7 @@ const App = () => {
         <Route path="/managerHome" element={<ManagerHomePage/>}/>
         <Route path="/ownerHome" element={<OwnerHomePage/>}/>
         <Route path="/add" element={<AddProduct/>}/>
-        <Route path="/product" element={<ProductDetail/>}/>
+        <Route path="/manager/product" element={<ManagerProductDetail/>}/>
       </Routes>
       </React.Fragment>
     </>
