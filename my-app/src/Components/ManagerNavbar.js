@@ -37,16 +37,13 @@ function Navbar2() {
           <Link to="/add" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Add Products/Services</button></Link>
           <span className="spacer"></span>
 
-          <Link to="/addPromotion" style={{ color: "white", fontSize: "20px" }}><button className="btn btn-light">Add Promotion</button></Link>
-          <span className="spacer"></span>
-
-          <Link to="/" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Apply Promotions</button></Link>
+          <Link to="/addPromotion" style={{ color: "white", fontSize: "20px" }}><button className="btn btn-light">Create Promotion</button></Link>
           <span className="spacer"></span>
 
           <Link to="/pendingPromotions" style={{ color: "white" ,fontSize: "20px" }}><button class="btn btn-light">Pending Promotions</button></Link>
           <span className="spacer"></span>
 
-          <Link to="/" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Analytics</button></Link>
+          <Link to="/analytics" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Analytics</button></Link>
           </div>
 
           <div className="dropdown">

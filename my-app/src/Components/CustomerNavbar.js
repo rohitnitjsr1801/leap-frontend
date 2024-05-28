@@ -29,10 +29,10 @@ function Navbar1() {
       
       
           <span className="spacer"></span>
-          <Link to="/customerHome" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Products</button></Link>
+          <Link to="/customerProducts" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Products</button></Link>
           <span className="spacer"></span>
       
-          <Link to="/" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Services</button></Link>      
+          <Link to="/customerServices" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Services</button></Link>      
           <span className="spacer"></span>
       
       

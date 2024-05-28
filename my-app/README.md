@@ -12,4 +12,3 @@ analytics
 wishlist
 products purchase history +promotion purchase in same file
 protected routes
-logout  

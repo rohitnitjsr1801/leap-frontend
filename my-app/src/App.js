@@ -17,6 +17,8 @@ import ManagerProductDetail from './Components/ManagerProductDetail';
 import AddPromotion from './Components/AddPromotion';
 import CustomerProductDetail from './Components/CustomerProductDetail';
 import EditPromotion from './Components/EditPromotion';
+import CustomerProductPage from './Components/CustomerProductsPage';
+import CustomerServicePage from './Components/CustomerServicePage';
 
 const App = () => {
   
@@ -35,6 +37,8 @@ const App = () => {
         <Route path="/pendingPromotions" element={<PromotionTable/>}/>
         <Route path="/purchaseHistory" element={<CustomerPurchaseHistory/>}/>
         <Route path="/customerHome" element={<CustomerHomePage/>}/>
+        <Route path="/customerProducts" element={<CustomerProductPage/>}/>
+        <Route path="/customerServices" element={<CustomerServicePage/>}/>
         <Route path="/managerHome" element={<ManagerHomePage/>}/>
         <Route path="/ownerHome" element={<OwnerHomePage/>}/>
         <Route path="/add" element={<AddProduct/>}/>
