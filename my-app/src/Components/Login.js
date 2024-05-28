@@ -29,7 +29,7 @@ const Login = ({ onLogin }) => {
       } else if (user.roles[0] === "ROLE_OWNER") {
         navigate('/managerHome');
       } else {
-        navigate('/customerHome');
+        navigate('/customerProducts');
       }
     }
   }, [userId, navigate]);
