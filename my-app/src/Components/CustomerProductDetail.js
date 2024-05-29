@@ -137,13 +137,14 @@ const CustomerProductDetail = () => {
         );
         console.log('Product bought:', response.data);
       }
+      alert('Product has been purchased and added to your My Orders.');
     } catch (error) {
       console.error('Error buying product or promotion:', error);
     }
   };
 
   const getDiscountedPrice = () => {
-    console.log(product+" "+discountRate)
+    console.log(product + " " + discountRate)
     if (product && discountRate) {
       console.log(product);
       return (product.price - (product.price * discountRate / 100)).toFixed(2);
@@ -168,12 +169,11 @@ const CustomerProductDetail = () => {
                 <Typography variant="body1" gutterBottom>
                   Description: {product.description}
                 </Typography>
-                {
-                  discountRate&&
-                   <Typography variant="body1" gutterBottom>
-                     Discounted Price: {getDiscountedPrice()}<br></br>
-                     Discount: {discountRate}%
-                   </Typography>  
+                {discountRate &&
+                  <Typography variant="body1" gutterBottom>
+                    Discounted Price: {getDiscountedPrice()}<br></br>
+                    Discount: {discountRate}%
+                  </Typography>
                 }
                 <Typography variant="body1" gutterBottom>
                   Price: {product.price}
