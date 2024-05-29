@@ -32,7 +32,7 @@ const ManagerProductDetail = () => {
     };
 
     fetchPromotion();
-  }, [product.id]);
+  }, [product.id, userToken]);
 
   const handleEditPromotion = (promotionId) => {
     navigate(`/promotion/edit/${promotionId}`);
@@ -49,6 +49,7 @@ const ManagerProductDetail = () => {
         }
       });
       setPromotion(null);
+      alert("Promotion deleted successfully!")
     } catch (error) {
       console.error('Error deleting promotion:', error);
     }

@@ -33,7 +33,7 @@ const EditPromotion = () => {
             setStartDate(promotion.startDate);
             setEndDate(promotion.endDate);
             setGender(promotion.gender);
-            setProducts(promotion.products.map(product => product.id));
+            setProducts(promotion.products.map(product => product.id).join(', '));
             setPromotionType(promotion.promotionType);
             setPurchaseFrequency(promotion.purchaseFrequency);
         } catch (error) {
@@ -44,7 +44,7 @@ const EditPromotion = () => {
       };
   
       fetchPromotion();
-  }, [promotionId])
+  }, [promotionId, token])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,12 +62,12 @@ const EditPromotion = () => {
     };
 
     try {
-      const response = await axios.put(`http://localhost:8080/api/promotion/${promotionId}`, promotionData, {
+      await axios.put(`http://localhost:8080/api/promotion/${promotionId}`, promotionData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-      alert('Promotion created successfully');
+      alert('Promotion edited successfully!');
       setAgeRange('');
       setDiscountRate('');
       setEndDate('');
@@ -82,8 +82,8 @@ const EditPromotion = () => {
       if (error.response && error.response.status === 401) {
         alert('Unauthorized: Please check your login credentials and try again.');
       } else {
-        console.error('Error creating promotion:', error);
-        alert('Failed to create promotion. Please try again later.');
+        console.error('Error updating promotion:', error);
+        alert('Failed to update promotion. Please try again later.');
       }
     }
   };
