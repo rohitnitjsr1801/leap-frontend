@@ -8,6 +8,7 @@ function Navbar2() {
 
   const dispatch = useDispatch();
   let userName=useSelector(state=>state.updateUserName);
+  const user = JSON.parse(localStorage.getItem('user'));
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -31,7 +32,7 @@ function Navbar2() {
 
 
           <span className="spacer"></span>
-          <Link to="/managerHome" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Home</button></Link>
+          <Link to={user.roles[0] === "ROLE_MANAGER" ? "/managerHome" : "/ownerHome"} style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Home</button></Link>
           <span className="spacer"></span>
 
           <Link to="/add" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Add Products/Services</button></Link>
