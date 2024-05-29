@@ -1,16 +1,22 @@
 import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
+
+import { changeUserId, changeUserRole, changeUserToken,changeUserName } from '../Actions';
 function Navbar2() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  const dispatch = useDispatch();
   let userName=useSelector(state=>state.updateUserName);
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
   const handleLogout = () => {
     // Perform logout logic here, such as clearing authentication tokens
-    
+    dispatch(changeUserToken({type:'UPDATE_USER_TOKEN',payload:"token"}));
+      dispatch(changeUserId({type:'UPDATE_USER_ID',payload:0}));
+      dispatch(changeUserRole({type:'UPDATE_USER_ROLE',payload:"CUSTOMER"}));
+      dispatch(changeUserName({type:'UPDATE_USER_NAME',payload:"USER"}));
     window.location.href = '/login';
   };
 
@@ -31,16 +37,13 @@ function Navbar2() {
           <Link to="/add" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Add Products/Services</button></Link>
           <span className="spacer"></span>
 
-          <Link to="/addPromotion" style={{ color: "white", fontSize: "20px" }}><button className="btn btn-light">Add Promotion</button></Link>
-          <span className="spacer"></span>
-
-          <Link to="/" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Apply Promotions</button></Link>
+          <Link to="/addPromotion" style={{ color: "white", fontSize: "20px" }}><button className="btn btn-light">Create Promotion</button></Link>
           <span className="spacer"></span>
 
           <Link to="/pendingPromotions" style={{ color: "white" ,fontSize: "20px" }}><button class="btn btn-light">Pending Promotions</button></Link>
           <span className="spacer"></span>
 
-          <Link to="/" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Analytics</button></Link>
+          <Link to="/analytics" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light">Analytics</button></Link>
           </div>
 
           <div className="dropdown">

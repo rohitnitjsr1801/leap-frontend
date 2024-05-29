@@ -9,8 +9,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import { useSelector } from 'react-redux';
+import CustomerProductDetail from './CustomerProductDetail';
 
-const ProductCard = () => {
+const CustomerProductPage = () => {
     const [products, setProducts] = useState([]);
     const token = useSelector(state => state.updateUserToken);
 
@@ -22,8 +23,7 @@ const ProductCard = () => {
                         Authorization: `Bearer ${token}`
                     }
                 });
-                const filteredProducts = response.data
-                // .filter(product => product.category === 'PRODUCT');
+                const filteredProducts = response.data.filter(product => product.category === 'PRODUCT');
                 setProducts(filteredProducts);
             } catch (error) {
                 console.error('Error fetching products:', error);
@@ -67,4 +67,4 @@ const ProductCard = () => {
     );
 };
 
-export default ProductCard;
+export default CustomerProductPage;
