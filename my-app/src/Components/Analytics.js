@@ -4,6 +4,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { changeUserId, changeUserRole, changeUserToken,changeUserName } from '../Actions';
 //import { Pie } from 'react-chartjs-2';
+import { PieChart, Pie, Sector, Cell, Tooltip, Legend } from 'recharts';
+import './Analytics.css';
 //import { PieChart } from '@mui/x-charts/PieChart';
 
 const Analytics = () => {
@@ -51,51 +53,65 @@ const Analytics = () => {
         }
     };
 
-    const revenueData = {
-        labels: ['Pre-Revenue', 'Post-Revenue'],
-        datasets: [
-            {
-                data: [analytics?.preRevenue, analytics?.postRevenue],
-                backgroundColor: ['#FF6384', '#36A2EB'],
-                hoverBackgroundColor: ['#FF6384', '#36A2EB']
-            }
-        ]
+
+    const renderColorfulLegendText = (value) => {
+        return <span style={{ color: '#8884d8' }}>{value}</span>;
     };
 
-    const interactionData = {
-        labels: ['Pre-Interactions', 'Post-Interactions'],
-        datasets: [
-            {
-                data: [analytics?.preInteractions, analytics?.postInteractions],
-                backgroundColor: ['#FFCD56', '#FF9F40'],
-                hoverBackgroundColor: ['#FFCD56', '#FF9F40']
-            }
-        ]
-    };
+    const revenueData = [
+        { name: 'Pre-Revenue', value: analytics?.preRevenue },
+        { name: 'Post-Revenue', value: analytics?.postRevenue }
+    ];
+
+    const interactionData = [
+        { name: 'Pre-Interactions', value: analytics?.preInteractions },
+        { name: 'Post-Interactions', value: analytics?.postInteractions }
+    ];
 
     return (
-        <div>
-            <h1>Analytics Dashboard</h1>
-            <button onClick={handleGenerateAnalytics} disabled={loading}>
+        <div className="analytics-container">
+            <h1 className='header'><b>Analytics Dashboard</b></h1>
+            <button className="dashboard-button" onClick={handleGenerateAnalytics} disabled={loading}>
                 {analytics ? 'View Analytics' : 'Generate Analytics'}
             </button>
-            <button onClick={handleUpdateAnalytics} disabled={loading || !analytics}>
-                Update Analytics
+            <button className="dashboard-button" onClick={handleUpdateAnalytics} disabled={loading || !analytics}>
+                Refresh
             </button>
-            {loading && <p>Loading...</p>}
+            {loading && <p className="loading-text">Loading...</p>}
             {analytics && (
                 <div>
-                    <h2>Analytics Details</h2>
-                    {/*<{h2>Revenue Analysis</h2>
-                    <Pie data={revenueData} />
-                    <h2>Interactions Analysis</h2>
-                    <Pie data={interactionData} />*/}
-                    <p>Conversion Rate: {analytics.convRate}%</p>
-                    <p>Pre-Revenue: ${analytics.preRevenue}</p>
+                    <p><b>Conversion Rate:</b> {analytics.convRate}%</p>
+                    { /*<p>Pre-Revenue: ${analytics.preRevenue}</p>
                     <p>Post-Revenue: ${analytics.postRevenue}</p>
                     <p>Pre-Interactions: {analytics.preInteractions}</p>
-                    <p>Post-Interactions: {analytics.postInteractions}</p>
-                    <p>Last Updated: {analytics.lastUpdated}</p>
+            <p>Post-Interactions: {analytics.postInteractions}</p> */}
+                    <p><b>Last Updated:</b> {analytics.lastUpdated} IST</p>
+
+                    <div className="pie-chart-container">
+                        <div><h3 className="chart-title"><b>Pre/Post Revenue (in $)</b></h3>
+                        <PieChart width={400} height={400}>
+                            <Pie data={revenueData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={60} fill="#8884d8" label isAnimationActive={true} animationBegin={0} animationDuration={800} animationEasing="ease-out">
+                            {
+                                revenueData.map((entry, index) => <Cell key={`cell-${index}`} fill={index % 2 ? '#82ca9d' : '#8884d8'} />)
+                            }
+                            </Pie>
+                            <Tooltip />
+                            <Legend formatter={renderColorfulLegendText} />
+                        </PieChart>
+                        </div>
+
+                        <div><h3 className="chart-title"><b>Pre/Post Interaction</b></h3>
+                        <PieChart width={400} height={400}>
+                            <Pie data={interactionData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={60} fill="#82ca9d" label isAnimationActive={true} animationBegin={0} animationDuration={800} animationEasing="ease-out">
+                                {
+                                    interactionData.map((entry, index) => <Cell key={`cell-${index}`} fill={index % 2 ? '#8884d8' : '#82ca9d'} />)
+                                }
+                            </Pie>
+                            <Tooltip />
+                            <Legend formatter={renderColorfulLegendText} />
+                        </PieChart>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>
