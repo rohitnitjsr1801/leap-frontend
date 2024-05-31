@@ -2,33 +2,45 @@ import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 function Navbar() {
-  
- 
-  return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <div class="container-fluid">
-      <div style={{color:"red"}}>
+  const navbarStyle = {
+      backgroundColor: '#222831',
+      fontFamily: '"Lucida Console", "Courier New", monospace',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: '10px 20px',
+      color: 'white'
+    };
 
-      <Link to="/" style={{ color: "white" ,fontSize: "30px" }}>PromoFomo</Link>
-      
-      <span className="spacer"></span>
-      
-      
-          <span className="spacer"></span>
-          <Link to="/login" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light" style={{width:"8rem"}}>Login</button></Link>
-          <span className="spacer"></span>
-      
-          <Link to="/register" style={{ color: "white",fontSize: "20px"  }}><button class="btn btn-light" style={{width:"8rem"}}>Register</button></Link>      
-          <span className="spacer"></span>
-      
-          
+    const brandStyle = {
+      color: 'white',
+      fontSize: '30px',
+      textDecoration: 'none',
+    };
+
+    const buttonContainerStyle = {
+      display: 'flex',
+      gap: '10px'
+    };
+
+    const buttonStyle = {
+      width: '8rem',
+      fontSize: '20px',
+    };
+
+    return (
+      <nav style={navbarStyle}>
+        <Link to="/" style={brandStyle}>PromoFomo</Link>
+        <div style={buttonContainerStyle}>
+          <Link to="/login">
+            <button className="btn btn-light" style={buttonStyle}>Login</button>
+          </Link>
+          <Link to="/register">
+            <button className="btn btn-light" style={buttonStyle}>Register</button>
+          </Link>
         </div>
-      {/* </div> */}
-        
-        
-       </div>
-  </nav>
-  )
-}
+      </nav>
+    );
+  }
 
 export default Navbar

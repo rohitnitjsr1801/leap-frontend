@@ -83,7 +83,7 @@ const Register = ({ onRegister }) => {
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
       />
-       <label>Role:</label>
+
          
       <select value={role} onChange={(e)=>setRole(e.target.value)}>
         <option value="">Select Role</option>
@@ -93,13 +93,13 @@ const Register = ({ onRegister }) => {
       </select>
     
         {(role === 'customer')&&<div>
-          <label>Gender:</label>
+
           <select value={gender} onChange={(e) => setGender(e.target.value)}>
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>
           </select>
-          <label>Age:</label>
+
           <input
             type="text"
             placeholder="Enter Age"
@@ -110,7 +110,7 @@ const Register = ({ onRegister }) => {
         </div>}
       {(role === 'manager' || role === 'owner') && (
         <div>
-          <label>Organization:</label>
+
           <input
             type="text"
             placeholder="Organization"
