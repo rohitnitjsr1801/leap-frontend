@@ -6,7 +6,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { useSelector } from 'react-redux';
-import { styled, ThemeProvider } from '@mui/system'; 
+import { styled, ThemeProvider } from '@mui/system';
 import { createTheme } from '@mui/material/styles';
 
 // Style the components using styled and sx prop
@@ -63,7 +63,7 @@ const CustomerProductDetail = () => {
           }
         );
         const promotionId = response.data;
-        
+
         // Check if the promotion is applicable for the customer
         const checkPromotionResponse = await axios.get(
           `http://localhost:8080/api/promotion/checkIfPromotionApplicableForCustomer?promotion_id=${promotionId}&customer_id=${customerId}`,
@@ -107,6 +107,7 @@ const CustomerProductDetail = () => {
         }
       );
       console.log('Interest registered:', response.data);
+      alert('The product has been added to your wishlist.');
     } catch (error) {
       console.error('Error registering interest:', error);
     }
