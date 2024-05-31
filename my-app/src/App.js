@@ -21,8 +21,7 @@ import CustomerWishlist from './Components/CustomerWishlist';
 import CustomerProductPage from './Components/CustomerProductsPage';
 import CustomerServicePage from './Components/CustomerServicePage';
 import OwnerProductDetail from './Components/OwnerProductDetail';
-
-
+import Analytics from './Components/Analytics';
 
 const App = () => {
   
@@ -51,6 +50,7 @@ const App = () => {
         <Route path="/addPromotion" element={<AddPromotion />} />
         <Route path="/wishlist" element={<CustomerWishlist />} />
         <Route path="/promotion/edit/:promotionId" element={<EditPromotion />} />
+        <Route path="/analytics" element={<Analytics />} />
       </Routes>
       </React.Fragment>
     </>
