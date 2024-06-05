@@ -14,7 +14,7 @@ function Navbar2() {
   };
   const handleLogout = () => {
     // Perform logout logic here, such as clearing authentication tokens
-    dispatch(changeUserToken({type:'UPDATE_USER_TOKEN',payload:"token"}));
+      dispatch(changeUserToken({type:'UPDATE_USER_TOKEN',payload:"token"}));
       dispatch(changeUserId({type:'UPDATE_USER_ID',payload:0}));
       dispatch(changeUserRole({type:'UPDATE_USER_ROLE',payload:"CUSTOMER"}));
       dispatch(changeUserName({type:'UPDATE_USER_NAME',payload:"USER"}));

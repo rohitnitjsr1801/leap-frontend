@@ -17,12 +17,15 @@ const Analytics = () => {
     const [loading, setLoading] = useState(false);
     const user = JSON.parse(localStorage.getItem('user'));
 
+    let userId = useSelector((state) => state.updateUserId);
+    let userToken = useSelector((state) => state.updateUserToken);
+  
     const handleGenerateAnalytics = async () => {
         setLoading(true);
         try {
             const response = await axios.get('http://localhost:8080/api/analytics/generate', {
-                params: { manager_id: user.id },
-                headers: { Authorization: `Bearer ${user.token}` }
+                params: { manager_id: userId },
+                headers: { Authorization: `Bearer ${userToken}` }
             });
             setAnalytics(response.data);
         } catch (error) {

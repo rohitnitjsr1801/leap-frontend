@@ -22,6 +22,18 @@ export const changeUserName=(name)=>{
         payload:name.payload,
     }
 }
+export const Authlogin = (obj) => {
+    debugger;
+    return {
+       type: obj.type,
+       payload:obj.payload,
+    }
+  };
+  
+// export const Authlogout = () => ({
+//     type: 'LOGOUT',
+//   });
+
 // export const changeModetoDark=()=>{ 
 //     return {
 //      type:'light',

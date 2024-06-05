@@ -10,9 +10,10 @@ function ManagerHomePage() {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
+  let authFlag=useSelector(state=>state.authReducer);
   let userId = useSelector(state => state.updateUserId);
   let userToken = useSelector(state => state.updateUserToken);
+
   // let userRole = useSelector(state => state.updateUserRole);
   // let userName = useSelector(state => state.updateUserName);
 
@@ -32,6 +33,8 @@ function ManagerHomePage() {
         setProducts(filteredProducts);
         setServices(filteredServices);
         console.log(response.data);
+        console.log(authFlag);
+        debugger;
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {

@@ -21,7 +21,10 @@ import CustomerWishlist from './Components/CustomerWishlist';
 import CustomerProductPage from './Components/CustomerProductsPage';
 import CustomerServicePage from './Components/CustomerServicePage';
 import OwnerProductDetail from './Components/OwnerProductDetail';
-
+import Analytics from './Components/Analytics';
+import AuthRoute from './Components/AuthRoute';
+import { Provider } from 'react-redux';
+import store from './store';
 
 
 const App = () => {
@@ -42,20 +45,21 @@ const App = () => {
         <Route path="/" element={<WithoutSignInHome/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
-        <Route path="/viewProduct/:productId" element={<CustomerProductDetail/>}/>
-        <Route path="/pendingPromotions" element={<PromotionTable/>}/>
+        <Route path="/viewProduct/:productId" element={<AuthRoute><CustomerProductDetail/></AuthRoute>}/>
+        <Route path="/pendingPromotions" element={<AuthRoute><PromotionTable/></AuthRoute>}/>
         <Route path="/purchaseHistory" element={<CustomerPurchaseHistory/>}/>
         <Route path="/customerHome" element={<CustomerHomePage/>}/>
         <Route path="/customerProducts" element={<CustomerProductPage/>}/>
         <Route path="/customerServices" element={<CustomerServicePage/>}/>
         <Route path="/managerHome" element={<ManagerHomePage/>}/>
         <Route path="/ownerHome" element={<OwnerHomePage/>}/>
-        <Route path="/add" element={<AddProduct/>}/>
-        <Route path="/manager/product" element={<ManagerProductDetail/>}/>
+        <Route path="/add" element={<AuthRoute><AddProduct/></AuthRoute>}/>
+        <Route path="/manager/product" element={<AuthRoute><ManagerProductDetail/></AuthRoute>}/>
         <Route path="/owner/product" element={<OwnerProductDetail/>}/>
-        <Route path="/addPromotion" element={<AddPromotion />} />
-        <Route path="/wishlist" element={<CustomerWishlist />} />
-        <Route path="/promotion/edit/:promotionId" element={<EditPromotion />} />
+        <Route path="/addPromotion" element={<AuthRoute><AddPromotion /></AuthRoute>} />
+        <Route path="/wishlist" element={<AuthRoute><CustomerWishlist /></AuthRoute>} />
+        <Route path="/promotion/edit/:promotionId" element={<AuthRoute><EditPromotion /></AuthRoute>} />
+        <Route path="/analytics" element={ <AuthRoute><Analytics/></AuthRoute>}/>
       </Routes>
       </React.Fragment>
     </>
