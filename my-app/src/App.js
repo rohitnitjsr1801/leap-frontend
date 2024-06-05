@@ -25,6 +25,7 @@ import Analytics from './Components/Analytics';
 import AuthRoute from './Components/AuthRoute';
 import { Provider } from 'react-redux';
 import store from './store';
+import ErrorPage from './Components/ErrorPage';
 
 
 const App = () => {
@@ -47,7 +48,7 @@ const App = () => {
         <Route path="/register" element={<Register/>}/>
         <Route path="/viewProduct/:productId" element={<AuthRoute><CustomerProductDetail/></AuthRoute>}/>
         <Route path="/pendingPromotions" element={<AuthRoute><PromotionTable/></AuthRoute>}/>
-        <Route path="/purchaseHistory" element={<CustomerPurchaseHistory/>}/>
+        <Route path="/purchaseHistory" element={<AuthRoute><CustomerPurchaseHistory/></AuthRoute>}/>
         <Route path="/customerHome" element={<CustomerHomePage/>}/>
         <Route path="/customerProducts" element={<CustomerProductPage/>}/>
         <Route path="/customerServices" element={<CustomerServicePage/>}/>
@@ -55,11 +56,12 @@ const App = () => {
         <Route path="/ownerHome" element={<OwnerHomePage/>}/>
         <Route path="/add" element={<AuthRoute><AddProduct/></AuthRoute>}/>
         <Route path="/manager/product" element={<AuthRoute><ManagerProductDetail/></AuthRoute>}/>
-        <Route path="/owner/product" element={<OwnerProductDetail/>}/>
+        <Route path="/owner/product" element={<AuthRoute><OwnerProductDetail/></AuthRoute>}/>
         <Route path="/addPromotion" element={<AuthRoute><AddPromotion /></AuthRoute>} />
         <Route path="/wishlist" element={<AuthRoute><CustomerWishlist /></AuthRoute>} />
         <Route path="/promotion/edit/:promotionId" element={<AuthRoute><EditPromotion /></AuthRoute>} />
         <Route path="/analytics" element={ <AuthRoute><Analytics/></AuthRoute>}/>
+        <Route path="/errorPage" element={<ErrorPage/>}/>
       </Routes>
       </React.Fragment>
     </>
