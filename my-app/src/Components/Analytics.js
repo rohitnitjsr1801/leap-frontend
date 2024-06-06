@@ -88,7 +88,7 @@ const Analytics = () => {
                     <p><b>Last Updated:</b> {analytics.lastUpdated} IST</p>
 
                     <div className="pie-chart-container">
-                        <div><h3 className="chart-title"><b>Pre/Post Revenue (in $)</b></h3>
+                        <div><h3 className="chart-title"><b>Pre/Post Revenue (in ₹)</b></h3>
                         <PieChart width={400} height={400}>
                             <Pie data={revenueData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={60} fill="#8884d8" label isAnimationActive={true} animationBegin={0} animationDuration={800} animationEasing="ease-out">
                             {
