@@ -19,7 +19,8 @@ const WithoutSignInHome = () => {
           "http://localhost:8080/api/getProducts"
         );
         // console.log(response);
-        const filteredProducts = response.data.filter(product => product.category === 'PRODUCT');
+        //const filteredProducts = response.data.filter(product => product.category === 'PRODUCT');
+        const filteredProducts = response.data;
         setProducts(filteredProducts);
         // setProducts();
         // console.log(products);
@@ -61,7 +62,7 @@ const WithoutSignInHome = () => {
             </CardContent>
             <CardActions>
               <Button size="small">
-                <Link to="/errorPage">View Product Detail</Link>
+                <Link to="/errorPage">{ product.category === "PRODUCT" ? "View Product Detail" : "View Service Detail"}</Link>
               </Button>
             </CardActions>
           </Card>

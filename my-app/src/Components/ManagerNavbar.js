@@ -26,7 +26,7 @@ function Navbar2() {
     <div class="container-fluid">
       <div style={{color:"red"}}>
 
-      <Link to="/" style={{ color: "white" ,fontSize: "30px" }}>PromoFomo</Link>
+      <Link to={user.roles[0] === "ROLE_MANAGER" ? "/managerHome" : "/ownerHome"} style={{ color: "white" ,fontSize: "30px" }}>PromoFomo</Link>
 
       <span className="spacer"></span>
 

@@ -23,7 +23,7 @@ function Navbar1() {
     <div class="container-fluid">
       <div style={{color:"red"}}>
 
-      <Link to="/" style={{ color: "white" ,fontSize: "30px" }}>PromoFomo</Link>
+      <Link to="/customerHome" style={{ color: "white" ,fontSize: "30px" }}>PromoFomo</Link>
       
       <span className="spacer"></span>
       
