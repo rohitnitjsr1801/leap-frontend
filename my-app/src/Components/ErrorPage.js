@@ -13,7 +13,7 @@ export class ErrorPage extends Component {
                   </div>
                   <div className="contentBox">
                     <h3 className="h2">Please Login To view details</h3>
-                    <p>Page Not Available!</p>
+                       <p>Page Not Available!</p>
                   </div>
                 </div>
               </div>

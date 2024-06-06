@@ -197,6 +197,7 @@ body {
 .four_zero_four_bg {
   background-image: url(./anime.gif);
   height: 400px;
+  margin-left: 14rem;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -219,4 +220,8 @@ body {
 }
 .contentBox {
   margin-top: -50px;
+  margin-left: 200px;
+  
+  font-family: "Lucida Console", "Courier New", monospace;
+
 }
