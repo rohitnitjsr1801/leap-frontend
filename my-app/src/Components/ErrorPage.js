@@ -1,32 +1,28 @@
 import React, { Component } from "react";
 
-function ErrorPage() {
-    const styles = {
-      container: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        backgroundColor: '#f8d7da',
-        color: '#721c24',
-        fontFamily: 'Arial, sans-serif',
-        textAlign: 'center',
-      },
-      heading: {
-        fontSize: '24px',
-        padding: '20px',
-        border: '1px solid #f5c6cb',
-        backgroundColor: '#f1b0b7',
-        borderRadius: '8px',
-      }
-    };
-  
+export class ErrorPage extends Component {
+  render() {
     return (
-      <div style={styles.container}>
-        <h1 style={styles.heading}>Login to view Product Details</h1>
+      <div>
+        <section className="page_404">
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-12 ">
+                <div className="col-sm-10 col-sm-offset-1  text-center">
+                  <div className="four_zero_four_bg">
+                  </div>
+                  <div className="contentBox">
+                    <h3 className="h2">Please login to view details.</h3>
+                       <p>Page Not Available!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     );
   }
-  
+}
 
 export default ErrorPage;
